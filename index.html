@@ -2,724 +2,1174 @@
 <html lang="pt-BR">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Landing page sobre o Telescópio Espacial Hubble">
-    <title>Telescópio Espacial Hubble</title>
+
+    <title>Hubble | Explorando o Universo</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #030712;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+        }
+
+        /* =========================
+           MENU
+        ========================= */
+
+        .menu {
+            width: 100%;
+            height: 80px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 8%;
+
+            background-color: rgba(3, 7, 18, 0.95);
+
+            position: fixed;
+            top: 0;
+            left: 0;
+
+            z-index: 1000;
+
+            border-bottom: 1px solid #1e293b;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            letter-spacing: 4px;
+        }
+
+        .menu ul {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .menu a {
+            font-size: 14px;
+            color: #cbd5e1;
+        }
+
+        .menu a:hover {
+            color: #38bdf8;
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            width: 100%;
+            height: 100vh;
+
+            min-height: 650px;
+
+            display: flex;
+            align-items: center;
+
+            padding: 0 10%;
+
+            position: relative;
+
+            background-image:
+                linear-gradient(
+                    to right,
+                    rgba(3, 7, 18, 0.95),
+                    rgba(3, 7, 18, 0.45)
+                ),
+                url("https://static.nationalgeographicbrasil.com/files/styles/image_3200/public/hubble-17-sombrero-galaxy-1920.webp?w=1190&h=667");
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-conteudo {
+            max-width: 700px;
+        }
+
+        .hero-conteudo span {
+            color: #38bdf8;
+            font-size: 14px;
+            letter-spacing: 5px;
+        }
+
+        .hero h1 {
+            font-size: 70px;
+            margin: 20px 0;
+
+            line-height: 1.05;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #cbd5e1;
+            line-height: 1.7;
+
+            margin-bottom: 35px;
+        }
+
+        .botao {
+            display: inline-block;
+
+            background-color: #0ea5e9;
+
+            padding: 15px 30px;
+
+            border-radius: 5px;
+
+            font-weight: bold;
+        }
+
+        .botao:hover {
+            background-color: #38bdf8;
+        }
+
+
+        /* =========================
+           SOBRE
+        ========================= */
+
+        .sobre {
+            min-height: 650px;
+
+            padding: 120px 10%;
+
+            display: flex;
+            align-items: center;
+            gap: 80px;
+
+            background-color: #050b1c;
+        }
+
+        .sobre-imagem {
+            width: 50%;
+        }
+
+        .sobre-imagem img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .sobre-texto {
+            width: 50%;
+        }
+
+        .titulo-secao {
+            color: #38bdf8;
+
+            font-size: 13px;
+
+            letter-spacing: 4px;
+
+            margin-bottom: 15px;
+        }
+
+        .sobre h2 {
+            font-size: 45px;
+            margin-bottom: 25px;
+        }
+
+        .sobre p {
+            color: #94a3b8;
+
+            line-height: 1.8;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* =========================
+           INFORMAÇÕES
+        ========================= */
+
+        .informacoes {
+            padding: 80px 10%;
+
+            display: flex;
+            justify-content: space-between;
+
+            background-color: #080f25;
+
+            text-align: center;
+        }
+
+        .numero {
+            width: 25%;
+        }
+
+        .numero h2 {
+            font-size: 40px;
+            color: #38bdf8;
+        }
+
+        .numero p {
+            color: #94a3b8;
+            margin-top: 10px;
+        }
+
+
+        /* =========================
+           FUNCIONAMENTO
+        ========================= */
+
+        .funcionamento {
+            padding: 120px 10%;
+
+            background-color: #030712;
+
+            text-align: center;
+        }
+
+        .funcionamento h2 {
+            font-size: 45px;
+            margin-bottom: 60px;
+        }
+
+        .cards {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .card {
+            width: 260px;
+            min-height: 250px;
+
+            padding: 35px;
+
+            background-color: #0f172a;
+
+            border: 1px solid #1e293b;
+
+            border-radius: 10px;
+
+            text-align: left;
+        }
+
+        .card .icone {
+            font-size: 35px;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           DESCOBERTAS
+        ========================= */
+
+        .descobertas {
+            padding: 120px 10%;
+
+            background-color: #080f25;
+
+            text-align: center;
+        }
+
+        .descobertas h2 {
+            font-size: 45px;
+            margin-bottom: 60px;
+        }
+
+        .descoberta {
+            width: 30%;
+
+            background-color: #0f172a;
+
+            border-radius: 10px;
+
+            overflow: hidden;
+
+            text-align: left;
+        }
+
+        .descoberta img {
+            width: 100%;
+            height: 220px;
+
+            object-fit: cover;
+        }
+
+        .descoberta-conteudo {
+            padding: 25px;
+        }
+
+        .descoberta h3 {
+            margin-bottom: 15px;
+        }
+
+        .descoberta p {
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           GALERIA
+        ========================= */
+
+        .galeria {
+            padding: 120px 8%;
+
+            background-color: #030712;
+
+            text-align: center;
+        }
+
+        .galeria h2 {
+            font-size: 45px;
+            margin-bottom: 50px;
+        }
+
+        .galeria-grid {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 15px;
+        }
+
+        .galeria-grid img {
+            width: 100%;
+            height: 280px;
+
+            object-fit: cover;
+
+            border-radius: 5px;
+        }
+
+        .galeria-grid img:hover {
+            opacity: 0.8;
+        }
+
+
+        /* =========================
+           HISTÓRIA
+        ========================= */
+
+        .historia {
+            padding: 120px 10%;
+
+            background-color: #080f25;
+
+            text-align: center;
+        }
+
+        .historia h2 {
+            font-size: 45px;
+            margin-bottom: 60px;
+        }
+
+        .linha {
+            max-width: 800px;
+
+            margin: auto;
+
+            text-align: left;
+        }
+
+        .evento {
+            border-left: 3px solid #38bdf8;
+
+            padding: 0 0 40px 30px;
+
+            margin-bottom: 20px;
+        }
+
+        .evento h3 {
+            color: #38bdf8;
+
+            font-size: 25px;
+
+            margin-bottom: 10px;
+        }
+
+        .evento p {
+            color: #94a3b8;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================
+           FINAL
+        ========================= */
+
+        .final {
+            min-height: 500px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 50px;
+
+            background-image:
+                linear-gradient(
+                    rgba(3, 7, 18, 0.75),
+                    rgba(3, 7, 18, 0.9)
+                ),
+                url("https://images.unsplash.com/photo-1446776877081-d282a0f896e2?auto=format&fit=crop&w=2000&q=80");
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .final h2 {
+            font-size: 55px;
+
+            margin-bottom: 20px;
+        }
+
+        .final p {
+            color: #cbd5e1;
+
+            font-size: 18px;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .footer {
+            padding: 60px 10%;
+
+            background-color: #020617;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            color: #94a3b8;
+        }
+
+        .footer h3 {
+            color: white;
+
+            margin-bottom: 15px;
+        }
+
+        .footer p {
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           RESPONSIVIDADE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .menu {
+                padding: 0 5%;
+            }
+
+            .menu ul {
+                gap: 10px;
+            }
+
+            .hero h1 {
+                font-size: 50px;
+            }
+
+            .sobre {
+                flex-direction: column;
+                padding: 80px 8%;
+            }
+
+            .sobre-imagem,
+            .sobre-texto {
+                width: 100%;
+            }
+
+            .informacoes {
+                flex-wrap: wrap;
+                gap: 40px;
+            }
+
+            .numero {
+                width: 40%;
+            }
+
+            .cards {
+                flex-wrap: wrap;
+            }
+
+            .descoberta {
+                width: 45%;
+            }
+
+            .galeria-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .menu {
+                height: 70px;
+            }
+
+            .menu ul {
+                display: none;
+            }
+
+            .hero {
+                padding: 0 7%;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .hero p {
+                font-size: 17px;
+            }
+
+            .sobre h2,
+            .funcionamento h2,
+            .descobertas h2,
+            .galeria h2,
+            .historia h2 {
+                font-size: 35px;
+            }
+
+            .numero {
+                width: 100%;
+            }
+
+            .descoberta {
+                width: 100%;
+            }
+
+            .galeria-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .final h2 {
+                font-size: 40px;
+            }
+
+            .footer {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
-    <!-- CABEÇALHO -->
-    <header>
+
+    <!-- =========================
+         MENU
+    ========================== -->
+
+    <div class="menu">
 
         <div class="logo">
-            <a href="#inicio">HUBBLE</a>
+            HUBBLE
         </div>
 
-        <nav>
-            <ul>
-                <li><a href="#inicio">Início</a></li>
-                <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#funcionamento">Como funciona</a></li>
-                <li><a href="#descobertas">Descobertas</a></li>
-                <li><a href="#galeria">Galeria</a></li>
-                <li><a href="#linha-do-tempo">História</a></li>
-            </ul>
-        </nav>
+        <ul>
 
-    </header>
+            <li>
+                <a href="#inicio">Início</a>
+            </li>
 
+            <li>
+                <a href="#sobre">Sobre</a>
+            </li>
 
-    <main>
+            <li>
+                <a href="#descobertas">Descobertas</a>
+            </li>
 
-        <!-- SEÇÃO PRINCIPAL / HERO -->
-        <section id="inicio">
+            <li>
+                <a href="#galeria">Galeria</a>
+            </li>
 
-            <div class="conteudo-1">
+            <li>
+                <a href="#historia">História</a>
+            </li>
 
-                <span>EXPLORANDO O UNIVERSO</span>
+        </ul>
 
-                <h1>Telescópio Espacial Hubble</h1>
+    </div>
 
-                <p>
-                    Uma das maiores ferramentas já criadas para observar
-                    os mistérios do universo.
-                </p>
 
-                <a href="#sobre">Descubra o Hubble</a>
+    <!-- =========================
+         HERO
+    ========================== -->
 
-            </div>
+    <div class="hero" id="inicio">
 
-            <div class="hero-imagem">
+        <div class="hero-conteudo">
 
-                <img
-                    src="imagens/hubble.jpg"
-                    alt="Telescópio Espacial Hubble orbitando a Terra"
-                >
+            <span>
+                EXPLORANDO O UNIVERSO
+            </span>
 
-            </div>
-
-        </section>
-
-
-        <!-- SOBRE O HUBBLE -->
-        <section id="sobre">
-
-            <div class="secao-titulo">
-
-                <span>SOBRE</span>
-
-                <h2>Uma janela para o universo</h2>
-
-            </div>
-
-            <div class="sobre-conteudo">
-
-                <div class="sobre-imagem">
-
-                    <img
-                        src="imagens/hubble-orbita.jpg"
-                        alt="Telescópio Hubble no espaço"
-                    >
-
-                </div>
-
-                <div class="sobre-texto">
-
-                    <h3>O que é o Hubble?</h3>
-
-                    <p>
-                        O Telescópio Espacial Hubble é um observatório
-                        espacial utilizado para estudar o universo.
-                    </p>
-
-                    <p>
-                        Lançado em 1990, o Hubble permitiu que cientistas
-                        observassem estrelas, planetas, nebulosas,
-                        galáxias e outros fenômenos cósmicos com
-                        detalhes impressionantes.
-                    </p>
-
-                    <p>
-                        Por estar acima da atmosfera terrestre, ele
-                        consegue realizar observações que seriam
-                        prejudicadas pela atmosfera.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- NÚMEROS / CURIOSIDADES -->
-        <section id="numeros">
-
-            <div class="secao-titulo">
-
-                <span>EM NÚMEROS</span>
-
-                <h2>O Hubble em números</h2>
-
-            </div>
-
-            <div class="numeros-container">
-
-                <div class="numero-card">
-
-                    <strong>1990</strong>
-
-                    <span>Ano de lançamento</span>
-
-                </div>
-
-
-                <div class="numero-card">
-
-                    <strong>30+</strong>
-
-                    <span>Anos de exploração</span>
-
-                </div>
-
-
-                <div class="numero-card">
-
-                    <strong>~547 km</strong>
-
-                    <span>Altitude orbital aproximada</span>
-
-                </div>
-
-
-                <div class="numero-card">
-
-                    <strong>13,2 m</strong>
-
-                    <span>Comprimento aproximado</span>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- COMO FUNCIONA -->
-        <section id="funcionamento">
-
-            <div class="secao-titulo">
-
-                <span>TECNOLOGIA</span>
-
-                <h2>Como o Hubble funciona?</h2>
-
-                <p>
-                    O telescópio utiliza diferentes instrumentos para
-                    observar e registrar informações sobre o universo.
-                </p>
-
-            </div>
-
-
-            <div class="funcionamento-cards">
-
-                <article class="card">
-
-                    <div class="card-icone">
-                        🔭
-                    </div>
-
-                    <h3>Observação</h3>
-
-                    <p>
-                        O Hubble coleta luz proveniente de objetos
-                        extremamente distantes no espaço.
-                    </p>
-
-                </article>
-
-
-                <article class="card">
-
-                    <div class="card-icone">
-                        📷
-                    </div>
-
-                    <h3>Imagens</h3>
-
-                    <p>
-                        Seus instrumentos registram imagens e dados
-                        que ajudam os cientistas a estudar o universo.
-                    </p>
-
-                </article>
-
-
-                <article class="card">
-
-                    <div class="card-icone">
-                        📡
-                    </div>
-
-                    <h3>Comunicação</h3>
-
-                    <p>
-                        Os dados coletados pelo telescópio são enviados
-                        para a Terra para serem analisados.
-                    </p>
-
-                </article>
-
-
-                <article class="card">
-
-                    <div class="card-icone">
-                        🔬
-                    </div>
-
-                    <h3>Pesquisa científica</h3>
-
-                    <p>
-                        Cientistas utilizam essas informações para
-                        investigar diferentes fenômenos cósmicos.
-                    </p>
-
-                </article>
-
-            </div>
-
-        </section>
-
-
-        <!-- DESCOBERTAS -->
-        <section id="descobertas">
-
-            <div class="secao-titulo">
-
-                <span>CIÊNCIA</span>
-
-                <h2>Descobertas do Hubble</h2>
-
-                <p>
-                    Ao longo de sua missão, o Hubble contribuiu para
-                    diversas áreas da astronomia.
-                </p>
-
-            </div>
-
-
-            <div class="descobertas-container">
-
-                <article class="descoberta-card">
-
-                    <div class="descoberta-imagem">
-
-                        <img
-                            src="imagens/galaxia.jpg"
-                            alt="Imagem de uma galáxia distante"
-                        >
-
-                    </div>
-
-                    <div class="descoberta-conteudo">
-
-                        <span>01</span>
-
-                        <h3>Galáxias distantes</h3>
-
-                        <p>
-                            O Hubble permitiu observar galáxias muito
-                            distantes e estudar diferentes períodos
-                            da história do universo.
-                        </p>
-
-                    </div>
-
-                </article>
-
-
-                <article class="descoberta-card">
-
-                    <div class="descoberta-imagem">
-
-                        <img
-                            src="imagens/nebulosa.jpg"
-                            alt="Imagem de uma nebulosa"
-                        >
-
-                    </div>
-
-                    <div class="descoberta-conteudo">
-
-                        <span>02</span>
-
-                        <h3>Nebulosas</h3>
-
-                        <p>
-                            Suas observações revelaram detalhes
-                            impressionantes de regiões onde estrelas
-                            nascem e morrem.
-                        </p>
-
-                    </div>
-
-                </article>
-
-
-                <article class="descoberta-card">
-
-                    <div class="descoberta-imagem">
-
-                        <img
-                            src="imagens/buraco-negro.jpg"
-                            alt="Representação de um buraco negro"
-                        >
-
-                    </div>
-
-                    <div class="descoberta-conteudo">
-
-                        <span>03</span>
-
-                        <h3>Buracos negros</h3>
-
-                        <p>
-                            O telescópio também contribuiu para o estudo
-                            de buracos negros e das regiões ao seu redor.
-                        </p>
-
-                    </div>
-
-                </article>
-
-            </div>
-
-        </section>
-
-
-        <!-- GALERIA -->
-        <section id="galeria">
-
-            <div class="secao-titulo">
-
-                <span>GALERIA</span>
-
-                <h2>O universo através do Hubble</h2>
-
-                <p>
-                    Algumas das imagens mais impressionantes capturadas
-                    pelo telescópio.
-                </p>
-
-            </div>
-
-
-            <div class="galeria-grid">
-
-                <figure class="galeria-item">
-
-                    <img
-                        src="imagens/galeria-1.jpg"
-                        alt="Imagem astronômica capturada pelo Hubble"
-                    >
-
-                    <figcaption>
-                        Galáxia distante
-                    </figcaption>
-
-                </figure>
-
-
-                <figure class="galeria-item">
-
-                    <img
-                        src="imagens/galeria-2.jpg"
-                        alt="Nebulosa fotografada pelo Hubble"
-                    >
-
-                    <figcaption>
-                        Nebulosa
-                    </figcaption>
-
-                </figure>
-
-
-                <figure class="galeria-item">
-
-                    <img
-                        src="imagens/galeria-3.jpg"
-                        alt="Imagem de estrelas capturada pelo Hubble"
-                    >
-
-                    <figcaption>
-                        Campo de estrelas
-                    </figcaption>
-
-                </figure>
-
-
-                <figure class="galeria-item">
-
-                    <img
-                        src="imagens/galeria-4.jpg"
-                        alt="Galáxia observada pelo Hubble"
-                    >
-
-                    <figcaption>
-                        Galáxia
-                    </figcaption>
-
-                </figure>
-
-
-                <figure class="galeria-item">
-
-                    <img
-                        src="imagens/galeria-5.jpg"
-                        alt="Imagem do espaço profundo"
-                    >
-
-                    <figcaption>
-                        Espaço profundo
-                    </figcaption>
-
-                </figure>
-
-
-                <figure class="galeria-item">
-
-                    <img
-                        src="imagens/galeria-6.jpg"
-                        alt="Imagem de uma nebulosa colorida"
-                    >
-
-                    <figcaption>
-                        Região de formação estelar
-                    </figcaption>
-
-                </figure>
-
-            </div>
-
-        </section>
-
-
-        <!-- LINHA DO TEMPO -->
-        <section id="linha-do-tempo">
-
-            <div class="secao-titulo">
-
-                <span>HISTÓRIA</span>
-
-                <h2>Uma jornada pelo espaço</h2>
-
-            </div>
-
-
-            <div class="timeline">
-
-                <article class="evento">
-
-                    <div class="evento-data">
-                        1990
-                    </div>
-
-                    <div class="evento-conteudo">
-
-                        <h3>Lançamento</h3>
-
-                        <p>
-                            O Telescópio Espacial Hubble é lançado
-                            para iniciar sua missão científica.
-                        </p>
-
-                    </div>
-
-                </article>
-
-
-                <article class="evento">
-
-                    <div class="evento-data">
-                        1993
-                    </div>
-
-                    <div class="evento-conteudo">
-
-                        <h3>Primeira missão de manutenção</h3>
-
-                        <p>
-                            Astronautas realizam uma missão para corrigir
-                            problemas no sistema óptico do telescópio.
-                        </p>
-
-                    </div>
-
-                </article>
-
-
-                <article class="evento">
-
-                    <div class="evento-data">
-                        2002
-                    </div>
-
-                    <div class="evento-conteudo">
-
-                        <h3>Novos instrumentos</h3>
-
-                        <p>
-                            O Hubble recebe novos equipamentos que
-                            ampliam suas capacidades científicas.
-                        </p>
-
-                    </div>
-
-                </article>
-
-
-                <article class="evento">
-
-                    <div class="evento-data">
-                        2010
-                    </div>
-
-                    <div class="evento-conteudo">
-
-                        <h3>20 anos de exploração</h3>
-
-                        <p>
-                            O telescópio completa duas décadas de
-                            observações e descobertas.
-                        </p>
-
-                    </div>
-
-                </article>
-
-
-                <article class="evento">
-
-                    <div class="evento-data">
-                        Hoje
-                    </div>
-
-                    <div class="evento-conteudo">
-
-                        <h3>Um legado científico</h3>
-
-                        <p>
-                            O Hubble permanece como um dos observatórios
-                            espaciais mais importantes da história.
-                        </p>
-
-                    </div>
-
-                </article>
-
-            </div>
-
-        </section>
-
-
-        <!-- CURIOSIDADES -->
-        <section id="curiosidades">
-
-            <div class="secao-titulo">
-
-                <span>CURIOSIDADES</span>
-
-                <h2>Você sabia?</h2>
-
-            </div>
-
-
-            <div class="curiosidades-container">
-
-                <article class="curiosidade">
-
-                    <h3>01</h3>
-
-                    <p>
-                        O Hubble orbita a Terra acima da maior parte
-                        da atmosfera terrestre.
-                    </p>
-
-                </article>
-
-
-                <article class="curiosidade">
-
-                    <h3>02</h3>
-
-                    <p>
-                        O telescópio recebeu várias missões de manutenção
-                        realizadas por astronautas.
-                    </p>
-
-                </article>
-
-
-                <article class="curiosidade">
-
-                    <h3>03</h3>
-
-                    <p>
-                        Suas imagens ajudaram a aproximar a astronomia
-                        do público de todo o mundo.
-                    </p>
-
-                </article>
-
-            </div>
-
-        </section>
-
-
-        <!-- CHAMADA FINAL -->
-        <section id="explore">
-
-            <div class="explore-conteudo">
-
-                <span>O UNIVERSO ESTÁ ESPERANDO</span>
-
-                <h2>
-                    Continue explorando o cosmos
-                </h2>
-
-                <p>
-                    Descubra mais sobre as estrelas, galáxias e fenômenos
-                    que compõem o universo.
-                </p>
-
-                <a href="#galeria">
-                    Explorar a galeria
-                </a>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <!-- RODAPÉ -->
-    <footer>
-
-        <div class="footer-conteudo">
-
-            <div class="footer-logo">
-
-                <h2>HUBBLE</h2>
-
-                <p>
-                    Telescópio Espacial Hubble
-                </p>
-
-            </div>
-
-
-            <div class="footer-links">
-
-                <h3>Navegação</h3>
-
-                <ul>
-                    <li><a href="#inicio">Início</a></li>
-                    <li><a href="#sobre">Sobre</a></li>
-                    <li><a href="#funcionamento">Funcionamento</a></li>
-                    <li><a href="#descobertas">Descobertas</a></li>
-                    <li><a href="#galeria">Galeria</a></li>
-                </ul>
-
-            </div>
-
-
-            <div class="footer-links">
-
-                <h3>História</h3>
-
-                <ul>
-                    <li><a href="#linha-do-tempo">Linha do tempo</a></li>
-                    <li><a href="#curiosidades">Curiosidades</a></li>
-                </ul>
-
-            </div>
-
-        </div>
-
-
-        <div class="footer-bottom">
+            <h1>
+                Telescópio Espacial Hubble
+            </h1>
 
             <p>
-                &copy; 2026 - Landing Page sobre o Telescópio Espacial Hubble
+                Uma janela para o universo que revelou
+                galáxias distantes, nebulosas e fenômenos
+                cósmicos que transformaram nossa visão do espaço.
+            </p>
+
+            <a href="#sobre" class="botao">
+                Conheça o Hubble
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         SOBRE
+    ========================== -->
+
+    <div class="sobre" id="sobre">
+
+        <div class="sobre-imagem">
+
+            <img
+                src="https://img.odcdn.com.br/wp-content/uploads/2021/07/Onibus-Espacial-Discovery-em-orbita-se-aproximando-da-Estacao-Espacial-Internacional-em-6-de-julho-de-2006.png"
+                alt="Espaço profundo"
+            >
+
+        </div>
+
+
+        <div class="sobre-texto">
+
+            <div class="titulo-secao">
+                SOBRE O HUBBLE
+            </div>
+
+            <h2>
+                Uma janela para o universo
+            </h2>
+
+            <p>
+                O Telescópio Espacial Hubble é um observatório
+                espacial criado para estudar o universo acima
+                da atmosfera terrestre.
+            </p>
+
+            <p>
+                Lançado em 24 de abril de 1990 a bordo do
+                ônibus espacial Discovery, o Hubble tornou-se
+                uma das ferramentas mais importantes da
+                astronomia moderna.
+            </p>
+
+            <p>
+                Suas observações ajudaram cientistas a estudar
+                estrelas, galáxias, nebulosas, planetas e
+                outros objetos extremamente distantes.
             </p>
 
         </div>
 
-    </footer>
+    </div>
+
+
+    <!-- =========================
+         NÚMEROS
+    ========================== -->
+
+    <div class="informacoes">
+
+        <div class="numero">
+
+            <h2>
+                1990
+            </h2>
+
+            <p>
+                Ano de lançamento
+            </p>
+
+        </div>
+
+
+        <div class="numero">
+
+            <h2>
+                36
+            </h2>
+
+            <p>
+                Anos de exploração
+            </p>
+
+        </div>
+
+
+        <div class="numero">
+
+            <h2>
+                ~547 km
+            </h2>
+
+            <p>
+                Altitude Aproximada
+            </p>
+
+        </div>
+
+
+        <div class="numero">
+
+            <h2>
+                1,7M+
+            </h2>
+
+            <p>
+                Observações realizadas
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         FUNCIONAMENTO
+    ========================== -->
+
+    <div class="funcionamento">
+
+        <div class="titulo-secao">
+            TECNOLOGIA
+        </div>
+
+        <h2>
+            Como o Hubble funciona?
+        </h2>
+
+
+        <div class="cards">
+
+            <div class="card">
+
+                <div class="icone">
+                    
+                </div>
+
+                <h3>
+                    Observação
+                </h3>
+
+                <p>
+                    O Hubble coleta luz de objetos extremamente
+                    distantes no universo.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icone">
+                    
+                </div>
+
+                <h3>
+                    Imagens
+                </h3>
+
+                <p>
+                    Seus instrumentos registram imagens que
+                    permitem estudar detalhes do cosmos.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icone">
+                    
+                </div>
+
+                <h3>
+                    Dados
+                </h3>
+
+                <p>
+                    As informações coletadas são enviadas
+                    para a Terra para serem analisadas.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icone">
+                    
+                </div>
+
+                <h3>
+                    Ciência
+                </h3>
+
+                <p>
+                    Cientistas utilizam os dados para investigar
+                    os maiores mistérios do universo.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         DESCOBERTAS
+    ========================== -->
+
+    <div class="descobertas" id="descobertas">
+
+        <div class="titulo-secao">
+            DESCOBERTAS
+        </div>
+
+        <h1>
+            O que o Hubble revelou?
+        </h1>
+
+
+        <div class="cards">
+
+
+            <div class="descoberta">
+
+                <img
+                    src="https://t.ctcdn.com.br/numGbTP6O841j7SPW1LjYa2eoxc=/1024x0/smart/i540705.jpeg"
+                    alt="Galáxia no espaço"
+                >
+
+                <div class="descoberta-conteudo">
+
+                    <h3>
+                        Galáxias distantes
+                    </h3>
+
+                    <p>
+                        O Hubble observou galáxias extremamente
+                        distantes, permitindo estudar diferentes
+                        épocas da história do universo.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="descoberta">
+
+                <img
+                    src="https://super.abril.com.br/wp-content/uploads/2019/04/site_galaxiarosa.png?quality=70&w=720&crop=1"
+                    alt="Nebulosa e estrelas"
+                >
+
+                <div class="descoberta-conteudo">
+
+                    <h3>
+                        Nebulosas
+                    </h3>
+
+                    <p>
+                        Suas imagens revelaram estruturas
+                        impressionantes de gás e poeira onde
+                        novas estrelas podem nascer.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="descoberta">
+
+                <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaFGtMcHklTlHlcvH1RHdwc7C36DzJ_fgobudFTSfW4A&s=10    "
+                    alt="Universo e estrelas"
+                >
+
+                <div class="descoberta-conteudo">
+
+                    <h3>
+                        Universo profundo
+                    </h3>
+
+                    <p>
+                        Os campos profundos do Hubble mostraram
+                        centenas de milhares de galáxias em regiões
+                        aparentemente vazias do céu.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         GALERIA
+    ========================== -->
+
+    <div class="galeria" id="galeria">
+
+        <div class="titulo-secao">
+            GALERIA
+        </div>
+
+        <h2>
+            O universo através do Hubble
+        </h2>
+
+
+        <div class="galeria-grid">
+
+            <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeJ_6i4yx7OcHUDhpALjZtF3prtxxhru3XeWpy_V-TpKazt7ABoq9TekM&s=10"
+                alt="Galáxia"
+            >
+
+            <img
+                src="https://ichef.bbci.co.uk/ace/ws/640/amz/worldservice/live/assets/images/2015/01/07/150107151422_nebula624.jpg.webp"
+                alt="Nebulosa"
+            >
+
+            <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfOzWJVwtBdJwHxylMNa0AWLKKGuS35jsd83tFGexhcA&s=10"
+                alt="Espaço profundo"
+            >
+
+            <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQW-D-mcngAgN2N4MLo_ZGQmAdl1_oofLNjZrwlpbGAmskeMUNuYTQYkiU&s=10"
+                alt="Terra vista do espaço"
+            >
+
+            <img
+                src="https://s2-g1.glbimg.com/JIpaeByAGNQovIPbz2p7y_zTN-I=/0x0:549x549/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2018/g/w/eSBKI2Q8KGlUgnQKbi5w/11-esta-imagem-impactante-conhecida-como-campo-ultra-profundo-do-hubble-e-uma-montagem-de-fotos-tiradas-ao-longo-de-mais-de-um-ano.jpg"
+                alt="Estrelas"
+            >
+
+            <img
+                src="https://p2.trrsf.com/image/fget/cf/1200/1600/middle/images.terra.com/2023/03/21/hubble_m55_mos_acs_long_flat_final2_0-1hv8bha32l9wm.jpg"
+                alt="Via Láctea"
+            >
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         HISTÓRIA
+    ========================== -->
+
+    <div class="historia" id="historia">
+
+        <div class="titulo-secao">
+            HISTÓRIA
+        </div>
+
+        <h2>
+            Uma jornada pelo espaço
+        </h2>
+
+
+        <div class="linha">
+
+
+            <div class="evento">
+
+                <h3>
+                    1990 — Lançamento
+                </h3>
+
+                <p>
+                    O ônibus espacial Discovery parte da Terra
+                    levando o Telescópio Espacial Hubble em sua
+                    missão STS-31.
+                </p>
+
+            </div>
+
+
+            <div class="evento">
+
+                <h3>
+                    1990 — Implantação
+                </h3>
+
+                <p>
+                    Um dia após o lançamento, o Hubble é retirado
+                    do compartimento de carga do Discovery e
+                    colocado em órbita.
+                </p>
+
+            </div>
+
+
+            <div class="evento">
+
+                <h3>
+                    1993 — Primeira manutenção
+                </h3>
+
+                <p>
+                    Astronautas realizam a primeira missão de
+                    manutenção e instalam instrumentos para
+                    corrigir o problema óptico do telescópio.
+                </p>
+
+            </div>
+
+
+            <div class="evento">
+
+                <h3>
+                    Hoje — Um legado científico
+                </h3>
+
+                <p>
+                    O Hubble continua sendo um dos observatórios
+                    espaciais mais importantes da história da
+                    astronomia.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         FINAL
+    ========================== -->
+
+    <div class="final">
+
+        <div>
+
+            <div class="titulo-secao">
+                OLHE PARA O CÉU
+            </div>
+
+            <h2>
+                O universo é maior<br>
+                do que imaginamos.
+            </h2>
+
+            <p>
+                Continue explorando as descobertas feitas
+                pelo Telescópio Espacial Hubble.
+            </p>
+
+            <a href="#galeria" class="botao">
+                Ver galeria
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <div class="footer">
+
+        <div>
+
+            <h3>
+                HUBBLE
+            </h3>
+
+            <p>
+                Telescópio Espacial Hubble
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h3>
+                Exploração espacial
+            </h3>
+
+            <p>
+                Uma página dedicada à história
+                e às descobertas do Hubble.
+            </p>
+
+        </div>
+
+    </div>
+
 
 </body>
 
